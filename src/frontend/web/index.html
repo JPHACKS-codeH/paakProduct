@@ -10,7 +10,7 @@
   <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/vue.js"></script>
-  <script src="js/uploadThumbs.js"></script>
+  <script src="js/jquery.uploadThumbs.js"></script>
   <script src="js/main.js"></script>
 </head>
 <body class="bg-main">
@@ -25,7 +25,21 @@
     </header>
     <main role="main" class="" id="vuetest">
       <!-- main contents -->
+      <!-- vuetest -->
       <h5 v-for="elm in array_data">{{elm}}</h5>
+      <!-- upload thumb test -->
+      <form action="#" method="post" enctype="multipart/form-data">
+        <ul>
+            <li>
+                <input type="file" id="upload1" name="images[]" multiple="multiple" />
+            </li>
+            <li>
+                <input type="file" id="upload2" name="images[]" multiple="multiple" />
+            </li>
+        </ul>
+      	<p id="preview1"></p>
+      	<p id="preview2"></p>
+      </form>
     </main>
     <footer role="contentinfo">
       <!-- footer -->
