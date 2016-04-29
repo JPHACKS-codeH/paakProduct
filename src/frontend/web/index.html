@@ -7,6 +7,7 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/palette.css">
   <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/vue.js"></script>
@@ -15,36 +16,60 @@
 </head>
 <body class="bg-main">
   <div class="container">
-    <header role="banner" class="bg-main">
-      <!-- header -->
-      <article class="">
-          <section class="align-cent">
-            <a href=""><strong class="txt-text">Product Name</strong></a>
-          </section>
+    <!-- header -->
+    <header role="banner" class="row bg-main">
+      <article class="centerize">
+        <section class="">
+          <a href=""><strong class="">Product Name</strong></a>
+        </section>
       </article>
     </header>
-    <main role="main" class="" id="vuetest">
-      <!-- main contents -->
-      <!-- vuetest -->
-      <h5 v-for="elm in array_data">{{elm}}</h5>
-      <!-- upload thumb test -->
-      <form action="#" method="post" enctype="multipart/form-data">
-        <ul>
-            <li>
-                <input type="file" id="upload1" name="images[]" multiple="multiple" />
-            </li>
-            <li>
-                <input type="file" id="upload2" name="images[]" multiple="multiple" />
-            </li>
-        </ul>
-      	<p id="preview1"></p>
-      	<p id="preview2"></p>
+    <!-- end header -->
+
+    <!-- main -->
+    <main role="main" class="row" id="vuetest">
+      <!-- form sentence -->
+      <form id="upload_form" class="centerize" method="post" enctype="multipart/form-data" onSubmit="return false;">
+        <img src="img/cat.jpg" class="uploaded thumb" alt="" />
+        <div id="preview1">
+
+        </div>
+        <p id="preview2"></p>
+        <input type="file" name="images[]" multiple="multiple" accept="image/*" title="Upload" id="upload_img"/>
+        <input type="text" class="alt" />
+        <input type="submit" name="submit" value="Submit" onclick="upload();"/>
       </form>
+      <!-- end form sentence -->
+
+      <!-- tweet text -->
+      <div class="row">
+
+      </div>
+      <!-- end tweet text -->
+
+      <!-- hash tags -->
+      <div id="hash_tags" class="centerize">
+        <div v-for="tag_name in hash_tags" class="hashtag col-xs-3 col-sm-3 col-md-6 col-lg-6">
+          <span class="">{{tag_name}}</span>
+        </div>
+      </div>
+      <!-- end hash tags -->
+
+      <!-- tweet button -->
+      <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+      <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+      </script>
+      <!-- end tweet button -->
+
     </main>
-    <footer role="contentinfo">
-      <!-- footer -->
+    <!-- end main -->
+
+    <!-- footer -->
+    <footer class="row" role="contentinfo">
       <small class="txt-shadow">&copy; codeH All Rights Reserved.</small>
     </footer>
+    <!-- end footer -->
   </div>
 </body>
 </html>
