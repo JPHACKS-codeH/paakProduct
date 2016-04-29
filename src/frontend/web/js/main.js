@@ -6,29 +6,47 @@ $(document).ready(function(){
   //     array_data:[]
   //   }
   // });
+
+  // TODO ajaxテスト
+  // $.ajax({
+  //   url: 'http://133.25.210.30:34001/hashtag',
+  //   type: 'POST',
+  //   dataType: 'json',
+  //   data: {param1: 'test'}
+  // })
+  // .done(function() {
+  //   console.log("success");
+  // })
+  // .fail(function() {
+  //   console.log("error");
+  // })
+  // .always(function() {
+  //   console.log("complete");
+  // });
+
   vueObj = new Vue({
-    el: '#hash_tags',
+    el: '#upload_form',
     data: {
-      hash_tags:[]
+      hash_tags:[],
+      text_message:""
     }
   });
-
+  vueObj.text_message = "今日もうちの猫は可愛かった。最高。";
 
   // var timer = setTimeout(function(){
   //   vueObj.array_data = ["hello","world","!!","good!!"]
   // },1000);
   $('#upload_img').uploadThumbs({
-        position : '#preview1',
-        alternate : '#btn_submit'
+        position : '#preview1'
     });
 });
 function upload(){
   $form = $('#upload_form');
-  $img = $('#upload_img')
+  $img = $('#upload_img');
   fd = new FormData($form);
   console.log($('#upload_img').val());
   // var body = { "Url": "http://www.chihirophoto.com/pets/images/pets%20top-1.jpg"};
-  var body = {"Url": $img[0].value};
+  // var body = {"Url": $img[0].value};
   $.ajax({
     url: "https://api.projectoxford.ai/vision/v1/analyses?visualFeatures=All",
     beforeSend: function(xhrObj){
