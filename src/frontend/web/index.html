@@ -14,10 +14,10 @@
   <script src="js/jquery.uploadThumbs.js"></script>
   <script src="js/main.js"></script>
 </head>
-<body class="bg-main">
+<body class="light-primary-color">
   <div class="container">
     <!-- header -->
-    <header role="banner" class="row bg-main">
+    <header role="banner" class="row dark-primary-color">
       <article class="centerize">
         <section class="">
           <a href=""><strong class="">Product Name</strong></a>
@@ -27,40 +27,46 @@
     <!-- end header -->
 
     <!-- main -->
-    <main role="main" class="row" id="vuetest">
+    <main role="main" class="row">
       <!-- form sentence -->
-      <form id="upload_form" class="centerize" method="post" enctype="multipart/form-data" onSubmit="return false;">
-        <img src="img/cat.jpg" class="uploaded thumb" alt="" />
-        <div id="preview1">
-
+      <form id="upload_form" class="" method="post" enctype="multipart/form-data" onSubmit="return false;">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div id="preview1">
+            <img src="img/cat.jpg" class="uploaded thumb" alt="" />
+          </div>
         </div>
-        <p id="preview2"></p>
-        <input type="file" name="images[]" multiple="multiple" accept="image/*" title="Upload" id="upload_img"/>
-        <input type="text" class="alt" />
-        <input type="submit" name="submit" value="Submit" onclick="upload();"/>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="" id="select_image">
+            <label for="up_file" class="file">
+              <img src="http://livedoor.blogimg.jp/denacreator/imgs/1/a/1a4b40b0.png" height="50" id="file" />
+              <input type="file" name="images[]" multiple="multiple" accept="image/*" title="Upload" id="up_file"/>
+            </label>
+          </div>
+
+          <!-- tweet text -->
+          <div id="text_tweet" class="row">
+            <textarea placeholder="Tweetする文字を入力" name="name" row="5" id="upload_form">{{text_message}}</textarea>
+          </div>
+          <!-- end tweet text -->
+
+          <!-- hash tags -->
+          <div id="hash_tags" class="centerize row">
+            <div v-for="tag_name in hash_tags" class="hashtag col-xs-3 col-sm-3 col-md-4 col-lg-4">
+              <div class="row default-primary-color">
+                <p class="">{{tag_name}}</p>
+              </div>
+            </div>
+          </div>
+          <!-- end hash tags -->
+
+          <!-- submit button -->
+          <div id="btn_submit" class="row">
+            <input type="submit" class="accent-color text-primary-color" name="submit" value="Submit" onclick="upload();"/>
+          </div>
+          <!-- submit button -->
+        </div>
       </form>
       <!-- end form sentence -->
-
-      <!-- tweet text -->
-      <div class="row">
-
-      </div>
-      <!-- end tweet text -->
-
-      <!-- hash tags -->
-      <div id="hash_tags" class="centerize">
-        <div v-for="tag_name in hash_tags" class="hashtag col-xs-3 col-sm-3 col-md-6 col-lg-6">
-          <span class="">{{tag_name}}</span>
-        </div>
-      </div>
-      <!-- end hash tags -->
-
-      <!-- tweet button -->
-      <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
-      <script>
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-      </script>
-      <!-- end tweet button -->
 
     </main>
     <!-- end main -->

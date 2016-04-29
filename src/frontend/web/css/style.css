@@ -1,7 +1,14 @@
+html{
+  width: 100%;
+}
+*{
+  color: #212121;
+}
 /* fixed css */
 .container{
   margin:0;
   padding:0;
+  width:100%;
 }
 .row{
   margin:0;
@@ -17,4 +24,66 @@ div[class*="col-"]{
 }
 .centerize > *{
   text-align: center;
+}
+/*header*/
+header{
+  height:50px;
+  padding:30px;
+}
+/*image*/
+img{
+  width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.file input{
+  display:none;
+}
+.file button{
+  cursor:pointer;
+}
+
+/*tweet text area*/
+#text_tweet{
+  padding: 5px;
+}
+textarea{
+  width: 100%;
+  height: 5em;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.2) inset;
+}
+input{
+  width:100%;
+}
+
+/*hash tag*/
+#hash_tags{
+  padding:0px 5px;
+  margin-bottom:10px;
+}
+#hash_tags > div{
+  padding: 5px;
+}
+.hashtag > div{
+  border-radius: 35px;
+}
+.hashtag > div:hover{
+  background: #FFA000; 
+}
+
+.hashtag p{
+  margin:15px;
+  color: white;
+}
+/*submit button*/
+#btn_submit{
+  padding: 10px;
+}
+#btn_submit input{
+  border:none;
+  height: 50px;
+  border-radius: 5px;
+  color: white;
 }
