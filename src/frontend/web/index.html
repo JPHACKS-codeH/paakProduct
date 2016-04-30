@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <head>
-  <title>Service Name</title>
+  <title>Hashman</title>
   <meta charset="UTF-8">
   <meta name="description" content="description">
   <meta name="keywords" content="keyword0,keyword1,keyword2">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/palette.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.mb.YTPlayer.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/vue.js"></script>
   <script src="js/jquery.uploadThumbs.js"></script>
+  <script src="js/jquery.tubular.1.0.js"></script>
+  <script src="js/jquery.mb.YTPlayer.js"></script>
   <script src="js/main.js"></script>
 </head>
 <body class="light-primary-color">
@@ -20,7 +23,7 @@
     <header role="banner" class="row dark-primary-color">
       <article class="centerize">
         <section class="">
-          <a href=""><strong class="">Product Name</strong></a>
+          <a href=""><strong class="">Hashman</strong></a>
         </section>
       </article>
     </header>
@@ -28,30 +31,50 @@
 
     <!-- main -->
     <main role="main" class="row">
-      <!-- form sentence -->
-      <form id="upload_form" class="" method="post" enctype="multipart/form-data" onSubmit="return false;">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <div id="preview1">
-            <img src="img/cat.jpg" class="uploaded thumb" alt="" />
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div id="preview1">
+          <!-- <img src="img/cat.jpg" class="uploaded thumb" alt="" /> -->
+          <div v-if="!view_section" id="s_img">
+            <h3>Please select image</h3>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <div class="" id="select_image">
-            <label for="up_file" class="file">
-              <img src="http://livedoor.blogimg.jp/denacreator/imgs/1/a/1a4b40b0.png" height="50" id="file" />
-              <input type="file" name="images[]" multiple="multiple" accept="image/*" title="Upload" id="up_file"/>
-            </label>
-          </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="row centerize" id="select_image">
 
-          <!-- tweet text -->
-          <div id="text_tweet" class="row">
-            <textarea placeholder="Tweetする文字を入力" name="name" row="5" id="upload_form">{{text_message}}</textarea>
-          </div>
-          <!-- end tweet text -->
+          <!-- upload image -->
+          <form id="upload_form" class="" method="post" enctype="multipart/form-data" onSubmit="return false;">
+            <label for="up_file" class="file btn btn-danger" type="button">
+              <h3>投稿する画像を選択</h3>
+              <!-- <img src="http://livedoor.blogimg.jp/denacreator/imgs/1/a/1a4b40b0.png" height="50" id="file" /> -->
+              <input type="file" name="up_img" multiple="multiple" accept="image/*;capture=camera" title="Upload" id="up_file" onchange="changeImage(this);"/>
+            </label>
+            <!-- tweet text -->
+            <div id="text_tweet" class="row">
+              <textarea placeholder="ツイートする文字を入力" name="tweet_text" row="5" id="txt_area" onchange="getTextarea(this);">{{text_message}}</textarea>
+            </div>
+            <!-- end tweet text -->
+          </form>
+        </div>
+        <!-- end upload image -->
+
+        <!-- tweet form -->
+        <form id="tweet_form" method="post" enctype="multipart/form-data">
+
 
           <!-- hash tags -->
           <div id="hash_tags" class="centerize row">
-            <div v-for="tag_name in hash_tags" class="hashtag col-xs-3 col-sm-3 col-md-4 col-lg-4">
+            <div class="row">
+              <h4 id="hash_title" v-if="view_section">投稿するハッシュタグ</h4>
+              <div v-if="hash_loading" class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+              </div>
+            </div>
+            <div v-for="tag_name in hash_tags" class="hashtag col-xs-3 col-sm-3 col-md-4 col-lg-4" onclick="clickTag({{$index}});">
               <div class="row default-primary-color">
                 <p class="">{{tag_name}}</p>
               </div>
@@ -61,13 +84,13 @@
 
           <!-- submit button -->
           <div id="btn_submit" class="row">
-            <input type="submit" class="accent-color text-primary-color" name="submit" value="Submit" onclick="upload();"/>
+            <input type="button" class="accent-color text-primary-color" name="submit" value="投稿" onclick="upload();"/>
           </div>
           <!-- submit button -->
-        </div>
-      </form>
-      <!-- end form sentence -->
+        </form>
+        <!-- end tweet form -->
 
+      </div>
     </main>
     <!-- end main -->
 
@@ -76,6 +99,9 @@
       <small class="txt-shadow">&copy; codeH All Rights Reserved.</small>
     </footer>
     <!-- end footer -->
+  </div>
+  <div id="background_video" style="">
+    <div id="bgndVideo" class="player" data-property="{videoURL:'http://youtu.be/BsekcY04xvQ',containment:'body',autoPlay:true, mute:true, startAt:0, opacity:0}">My video</div>
   </div>
 </body>
 </html>
